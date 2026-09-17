@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opsguardian-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opsguardian-app
+  template:
+    metadata:
+      labels:
+        app: opsguardian-app
+    spec:
+      containers:
+        - name: opsguardian-app
+          image: opsguardian-app:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
