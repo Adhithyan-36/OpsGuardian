@@ -10,7 +10,14 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t opsguardian-app .'
+                bat 'docker build -t opsguardian-app:latest .'
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                bat 'kubectl apply -f k8s\\deployment.yaml'
+                bat 'kubectl apply -f k8s\\service.yaml'
             }
         }
     }
